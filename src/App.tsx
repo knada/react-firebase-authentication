@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyles } from './theme/global'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { setAuthUser, selectAuthStatus } from './features/Auth/authSlice'
+import { Routes } from './routes'
+import { useFirebase } from './hooks/contexts'
+import { login } from './features/Auth/authSlice'
+import theme from './theme'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const firebase = useFirebase()
+    const dispatch = useDispatch()
+
+    React.useEffect(() => {
+        const listener = firebase.auth.onAuthStateChanged((user: any) => {
+            if (user) {
+                const authUser = {
+                    uid: user.uid,
+                    email: user.email,
+                    displayName: user.displayName,
+                    phoneNumber: user.phoneNumber,
+                    photoURL: user.photoURL,
+                    emailVerified: user.emailVerified,
+                    isAnonymous: user.isAnonymous,
+                    lastLoginAt: user.lastLoginAt,
+                    createdAt: user.createdAt,
+                }
+                dispatch(setAuthUser(authUser))
+            }
+        })
+
+        return () => listener()
+    })
+
+    React.useEffect(() => {
+        // const authenticated = localStorage.getItem('authenticated')
+        dispatch(login())
+    })
+
+    return (
+        <Router>
+            {console.log(useSelector(selectAuthStatus))}
+            <ThemeProvider theme={theme}>
+                <>
+                    <GlobalStyles />
+                    <div className="App">
+                        <Routes />
+                    </div>
+                </>
+            </ThemeProvider>
+        </Router>
+    )
 }
 
-export default App;
+export default App
