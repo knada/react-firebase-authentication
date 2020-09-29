@@ -21,27 +21,29 @@ const AuthRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
     )
 }
 
-export const Routes = () => (
-    <Switch>
-        <Route exact path="/">
-            <AuthContainer>
-                <Landing />
-            </AuthContainer>
-        </Route>
-        <Route path="/login">
-            <AuthContainer>
-                <Login />
-            </AuthContainer>
-        </Route>
-        <Route path="/register">
-            <AuthContainer>
-                <SignUp />
-            </AuthContainer>
-        </Route>
-        <AuthRoute path="/home">
-            <AuthContainer>
-                <Home />
-            </AuthContainer>
-        </AuthRoute>
-    </Switch>
-)
+export const Routes = () => {
+    return (
+        <Switch>
+            <Route exact path="/">
+                <AuthContainer>
+                    <Landing />
+                </AuthContainer>
+            </Route>
+            <Route path="/login">
+                <AuthContainer>
+                    <Login />
+                </AuthContainer>
+            </Route>
+            <Route path="/register">
+                <AuthContainer>
+                    <SignUp />
+                </AuthContainer>
+            </Route>
+            <AuthRoute path="/home">
+                <AuthContainer>
+                    <Home />
+                </AuthContainer>
+            </AuthRoute>
+        </Switch>
+    )
+}
