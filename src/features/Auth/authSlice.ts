@@ -2,8 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 import { firebaseAuthUser } from '../../types'
 
+enum AuthStatus {
+    loggedIn = 'loggedIn',
+    pending = 'pending',
+    loggedOut = 'loggedOut',
+}
+
 type AuthSliceState = {
-    authStatus: boolean
+    authStatus: AuthStatus
     authUser: firebaseAuthUser | null
     authError: any
 }
@@ -11,16 +17,16 @@ type AuthSliceState = {
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        authStatus: false,
+        authStatus: AuthStatus.loggedOut,
         authUser: null,
         authError: null,
     } as AuthSliceState,
     reducers: {
         login: state => {
-            state.authStatus = true
+            state.authStatus = AuthStatus.loggedIn
         },
         logout: state => {
-            state.authStatus = false
+            state.authStatus = AuthStatus.loggedOut
         },
         setAuthUser: (state, action) => {
             state.authUser = action.payload
