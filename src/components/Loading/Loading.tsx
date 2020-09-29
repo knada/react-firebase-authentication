@@ -20,6 +20,12 @@ const LoadingContainer = styled.div`
     display: flex;
 `
 
+const IndicatorContainer = styled.div`
+    width: 150px;
+    height: 168.75px;
+    margin: auto;
+`
+
 const spin = keyframes`
     from {
         transform: rotate(0deg);
@@ -76,7 +82,9 @@ const loadingAnimation = ({
 const Loading = ({ animation }: LoadingProps) => {
     return (
         <LoadingContainer>
-            {animation ? <ReactFirebase animation={loadingAnimation(animations[animation])} /> : <ReactFirebase />}
+            <IndicatorContainer>
+                {animation ? <ReactFirebase animation={loadingAnimation(animations[animation])} /> : <ReactFirebase />}
+            </IndicatorContainer>
         </LoadingContainer>
     )
 }

@@ -3,14 +3,12 @@ import { useForm } from 'react-hook-form'
 import { useFirebase } from '../../hooks/contexts'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-    login,
-    setAuthError,
-    selectAuthError,
-} from '../../features/Auth/authSlice'
+import { login, setAuthError, selectAuthError } from '../../features/Auth/authSlice'
+import ReactFirebase from '../SvgComponents/ReactFirebase'
 
 import {
     AuthForm,
+    AuthBrand,
     AuthHeading,
     AuthLabel,
     AuthInput,
@@ -36,30 +34,23 @@ const Login: React.FC = () => {
                 history.push('/home')
             })
             .catch((error: any) => {
-                dispatch(
-                    setAuthError({ code: error.code, message: error.message })
-                )
+                dispatch(setAuthError({ code: error.code, message: error.message }))
             })
     })
 
     return (
         <AuthForm onSubmit={onSubmit}>
+            <AuthBrand>
+                <ReactFirebase />
+            </AuthBrand>
             <AuthHeading>Login to your account</AuthHeading>
             <AuthLabel htmlFor="email">
                 Email
-                <AuthInput
-                    ref={register({ required: true })}
-                    type="email"
-                    name="email"
-                />
+                <AuthInput ref={register({ required: true })} type="email" name="email" />
             </AuthLabel>
             <AuthLabel htmlFor="password">
                 Password
-                <AuthInput
-                    ref={register({ required: true })}
-                    type="password"
-                    name="password"
-                />
+                <AuthInput ref={register({ required: true })} type="password" name="password" />
             </AuthLabel>
             {authError ? <AuthError>{authError.message}</AuthError> : null}
             <AuthButton>Login</AuthButton>

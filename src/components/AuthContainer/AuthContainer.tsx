@@ -17,6 +17,12 @@ export const AuthForm = styled.form`
     border-radius: 0.5rem;
 `
 
+export const AuthBrand = styled.div`
+    padding: 0.4rem;
+    height: 120px;
+    background: hsl(210, 100%, 35%);
+`
+
 export const AuthHeading = styled.h1`
     font-family: 'Inter', sans-serif;
     font-size: 1.25rem;

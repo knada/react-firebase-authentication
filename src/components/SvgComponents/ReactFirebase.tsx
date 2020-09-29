@@ -6,8 +6,9 @@ type ReactFirebaseProps = {
 }
 
 const ReactFirebaseSvg = styled.svg<ReactFirebaseProps>`
+    display: block;
     margin: auto;
-    width: 150px;
+    height: 100%;
     ${props => props.animation};
 `
 
