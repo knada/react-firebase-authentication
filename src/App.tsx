@@ -3,15 +3,17 @@ import { ThemeProvider } from 'styled-components'
 import { GlobalStyles } from './theme/global'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { setAuthUser, selectAuthStatus } from './features/Auth/authSlice'
+import { setAuthUser, AuthStatus, selectAuthStatus } from './features/Auth/authSlice'
 import { Routes } from './routes'
 import { useFirebase } from './hooks/contexts'
-import { login } from './features/Auth/authSlice'
+import { login, logout } from './features/Auth/authSlice'
 import theme from './theme'
+import Loading from './components/Loading/Loading'
 
 function App() {
     const firebase = useFirebase()
     const dispatch = useDispatch()
+    const authStatus = useSelector(selectAuthStatus)
 
     React.useEffect(() => {
         const listener = firebase.auth.onAuthStateChanged((user: any) => {
@@ -35,19 +37,20 @@ function App() {
     })
 
     React.useEffect(() => {
-        // const authenticated = localStorage.getItem('authenticated')
-        dispatch(login())
+        const authenticated = localStorage.getItem('authenticated')
+        if (authenticated === 'true') {
+            dispatch(login())
+        } else {
+            dispatch(logout())
+        }
     })
 
     return (
         <Router>
-            {console.log(useSelector(selectAuthStatus))}
             <ThemeProvider theme={theme}>
                 <>
                     <GlobalStyles />
-                    <div className="App">
-                        <Routes />
-                    </div>
+                    <div className="App">{authStatus === AuthStatus.pending ? <Loading /> : <Routes />}</div>
                 </>
             </ThemeProvider>
         </Router>

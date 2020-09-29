@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectAuthStatus, AuthStatus } from '../../features/Auth/authSlice'
 
 const LandingContainer = styled.div`
     margin: auto;
@@ -28,6 +30,10 @@ const LandingLink = styled(Link)`
 `
 
 const Landing = () => {
+    const authStatus = useSelector(selectAuthStatus)
+    if (authStatus === AuthStatus.loggedIn) {
+        return <Redirect to="/home" />
+    }
     return (
         <LandingContainer>
             <LandingHeading>

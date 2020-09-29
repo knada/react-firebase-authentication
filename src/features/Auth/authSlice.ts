@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 import { firebaseAuthUser } from '../../types'
 
-enum AuthStatus {
+export enum AuthStatus {
     loggedIn = 'loggedIn',
     pending = 'pending',
     loggedOut = 'loggedOut',
