@@ -15,7 +15,7 @@ const Home = () => {
     if (authUser) {
         return (
             <HomeContainer>
-                <HomeHeading>Welcome User</HomeHeading>
+                <HomeHeading>Welcome {authUser.email}</HomeHeading>
             </HomeContainer>
         )
     }
