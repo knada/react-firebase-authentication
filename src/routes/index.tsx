@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Switch, Route, Redirect, RouteProps } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectAuthStatus } from '../features/Auth/authSlice'
+import { AuthStatus, selectAuthStatus } from '../features/Auth/authSlice'
 import AuthContainer from '../components/AuthContainer/AuthContainer'
 import Login from '../components/Login/Login'
 import SignUp from '../components/SignUp/SignUp'
@@ -9,7 +9,7 @@ import Landing from '../components/Landing/Landing'
 import Home from '../components/Home/Home'
 
 const AuthRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
-    const authStatus = useSelector(selectAuthStatus)
+    const authStatus = useSelector(selectAuthStatus) === AuthStatus.loggedIn
 
     return (
         <Route

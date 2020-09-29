@@ -17,7 +17,7 @@ type AuthSliceState = {
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        authStatus: AuthStatus.loggedOut,
+        authStatus: AuthStatus.pending,
         authUser: null,
         authError: null,
     } as AuthSliceState,
