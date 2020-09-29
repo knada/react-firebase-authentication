@@ -36,9 +36,7 @@ const Landing = () => {
     }
     return (
         <LandingContainer>
-            <LandingHeading>
-                Hi, Sign Up if you are new, Login if already have an account.
-            </LandingHeading>
+            <LandingHeading>Hi, Sign Up if you are new, Login if already have an account.</LandingHeading>
             <LandingLink to="/login">Log In</LandingLink>
             <LandingLink to="/register">Sign Up</LandingLink>
         </LandingContainer>
