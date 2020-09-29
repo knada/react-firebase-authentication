@@ -6,6 +6,13 @@ type LoadingProps = {
     animation?: 'spin' | 'pulsate'
 }
 
+type animationType = {
+    name: Keyframes
+    duration: string
+    timingFunction?: string
+    iterationCount?: string
+}
+
 const LoadingContainer = styled.div`
     width: 100vw;
     height: 100vh;
@@ -33,13 +40,25 @@ const pulsate = keyframes`
         transform: scale(1)
     }
 `
+
 const animations = {
-    spin,
-    pulsate,
+    spin: {
+        name: spin,
+        duration: '3s',
+    },
+    pulsate: {
+        name: pulsate,
+        duration: '0.75s',
+    },
 }
 
-const loadingAnimation = (animation: Keyframes) => css`
-    animation: ${animation} 1s linear infinite;
+const loadingAnimation = ({
+    name,
+    duration,
+    timingFunction = 'linear',
+    iterationCount = 'infinite',
+}: animationType) => css`
+    animation: ${name} ${duration} ${timingFunction} ${iterationCount};
 `
 
 // const CircularLoadingIndicator = styled.div`

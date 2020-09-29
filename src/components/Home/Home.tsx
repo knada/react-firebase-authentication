@@ -19,7 +19,7 @@ const Home = () => {
             </HomeContainer>
         )
     }
-    return <Loading />
+    return <Loading animation="spin" />
 }
 
 export default Home
