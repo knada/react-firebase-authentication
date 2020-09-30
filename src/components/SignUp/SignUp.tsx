@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useFirebase } from '../../hooks/contexts'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { login, setAuthError } from '../../features/Auth/authSlice'
+import { login, setSignupFormError } from '../../features/Auth/authSlice'
 import ReactFirebase from '../SvgComponents/ReactFirebase'
 
 import {
@@ -32,11 +32,11 @@ const SignUp: React.FC = () => {
                     history.push('/home')
                 })
                 .catch((error: any) => {
-                    dispatch(setAuthError(error))
+                    dispatch(setSignupFormError(error))
                 })
         } else {
             dispatch(
-                setAuthError({
+                setSignupFormError({
                     message: 'password did not match confirm password!',
                 })
             )

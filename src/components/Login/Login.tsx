@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useFirebase } from '../../hooks/contexts'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, setAuthError, selectAuthError } from '../../features/Auth/authSlice'
+import { login, setLoginFormError, selectLoginFormError } from '../../features/Auth/authSlice'
 import ReactFirebase from '../SvgComponents/ReactFirebase'
 
 import {
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
     const firebase = useFirebase()
     const dispatch = useDispatch()
     const history = useHistory()
-    const authError = useSelector(selectAuthError)
+    const authError = useSelector(selectLoginFormError)
 
     const onSubmit = handleSubmit(({ email, password }) => {
         firebase
@@ -34,7 +34,7 @@ const Login: React.FC = () => {
                 history.push('/home')
             })
             .catch((error: any) => {
-                dispatch(setAuthError({ code: error.code, message: error.message }))
+                dispatch(setLoginFormError({ code: error.code, message: error.message }))
             })
     })
 

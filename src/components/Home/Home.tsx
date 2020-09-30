@@ -15,7 +15,22 @@ const HomeHeading = styled.h1`
     text-align: center;
 `
 
-const LogoutButton = styled.button``
+const LogoutButton = styled.button`
+    display: block;
+    min-width: 120px;
+    background-color: white;
+    border: none;
+    padding: 0.8rem;
+    margin: 1rem auto;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        background-color: hsl(220, 80%, 80%);
+        transition: 0.3s;
+    }
+`
 
 const Home = () => {
     const authUser = useSelector(selectAuthUser)
@@ -42,7 +57,7 @@ const Home = () => {
             </HomeContainer>
         )
     }
-    return <Loading animation="spin" />
+    return <Loading animation="pulsate" />
 }
 
 export default Home
