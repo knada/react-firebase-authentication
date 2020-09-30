@@ -1,4 +1,4 @@
-#Firebase authentication with React in Typescript
+# Firebase authentication with React in Typescript
 
 ## Tech Used
  Redux-Toolkit for state management, React-Router for navigation, Styled-Components for styling React-Hook-Forms and Yup for form handling and Validation in Typescript.
