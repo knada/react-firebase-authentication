@@ -82,6 +82,7 @@ export const AuthFooter = styled.footer`
 `
 
 export const AuthLink = styled(Link)`
+    display: block;
     text-decoration: none;
     font-size: 12px;
     font-weight: 500;

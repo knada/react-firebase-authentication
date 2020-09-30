@@ -55,7 +55,9 @@ const Login: React.FC = () => {
             {authError ? <AuthError>{authError.message}</AuthError> : null}
             <AuthButton>Login</AuthButton>
             <AuthFooter>
-                <AuthLink to="/register">Sign Up for a new user</AuthLink>
+                <AuthLink to="/reset-password">Forgot your password?</AuthLink>
+                <br />
+                <AuthLink to="/register">Don&apos;t have an account? Sign Up for a new account.</AuthLink>
             </AuthFooter>
         </AuthForm>
     )
