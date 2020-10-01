@@ -43,11 +43,11 @@ const ChangePassword = () => {
                 <AuthInput ref={register({ required: true })} type="password" name="currentPassword" />
             </AuthLabel>
             <AuthLabel htmlFor="email">
-                Current Password
+                New Password
                 <AuthInput ref={register({ required: true })} type="password" name="newPassword" />
             </AuthLabel>
             <AuthLabel htmlFor="email">
-                Current Password
+                Confirm New Password
                 <AuthInput ref={register({ required: true })} type="password" name="confirmPassword" />
             </AuthLabel>
             <AuthButton>Change My Password</AuthButton>

@@ -8,6 +8,7 @@ import SignUp from '../components/SignUp/SignUp'
 import Landing from '../components/Landing/Landing'
 import Home from '../components/Home/Home'
 import ResetPassword from '../components/ResetPassword/ResetPassword'
+import ChangePassword from '../components/ChangePassword/ChangePassword'
 
 const AuthRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
     const authStatus = useSelector(selectAuthStatus) === AuthStatus.loggedIn
@@ -46,6 +47,11 @@ export const Routes = () => {
                     <ResetPassword />
                 </AuthContainer>
             </Route>
+            <AuthRoute exact path="/change-password">
+                <AuthContainer>
+                    <ChangePassword />
+                </AuthContainer>
+            </AuthRoute>
         </Switch>
     )
 }

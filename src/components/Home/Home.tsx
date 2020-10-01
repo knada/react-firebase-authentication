@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link, useHistory } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 import { selectAuthUser, logout, setAuthError } from '../../features/Auth/authSlice'
 import { useFirebase } from '../../hooks/contexts'
 import Loading from '../Loading/Loading'
@@ -15,7 +15,7 @@ const HomeHeading = styled.h1`
     text-align: center;
 `
 
-const LogoutButton = styled.button`
+const sharedStyles = css`
     display: block;
     min-width: 120px;
     background-color: white;
@@ -30,6 +30,16 @@ const LogoutButton = styled.button`
         background-color: hsl(220, 80%, 80%);
         transition: 0.3s;
     }
+`
+
+const ChangePasswordLink = styled(Link)`
+    ${sharedStyles}
+    text-align: center;
+    width: 200px;
+`
+
+const LogoutButton = styled.button`
+    ${sharedStyles}
 `
 
 const Home = () => {
@@ -52,6 +62,7 @@ const Home = () => {
     if (authUser) {
         return (
             <HomeContainer>
+                <ChangePasswordLink to="/change-password">Change Password</ChangePasswordLink>
                 <HomeHeading>Welcome {authUser.email}</HomeHeading>
                 <LogoutButton onClick={handleLogout}>Log out</LogoutButton>
             </HomeContainer>
