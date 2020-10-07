@@ -17,8 +17,7 @@ module.exports = {
         "plugin:prettier/recommended",
         "prettier",
         "prettier/react",
-        "prettier/@typescript-eslint",
-        
+        "prettier/@typescript-eslint", 
     ],
     parser: "@typescript-eslint/parser",
     plugins: ["@typescript-eslint", "react", "prettier"],
@@ -26,7 +25,7 @@ module.exports = {
         ecmaFeatures: {
             jsx: true,
         },
-      ecmaVersion: 2018,
+      ecmaVersion: 2020,
       sourceType: "module",
     },
     rules: {
